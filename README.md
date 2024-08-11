@@ -7,7 +7,7 @@
 ## Features
 - **Fast**: ShadowBrowse is built on top of the latest web technologies to ensure that it is fast and responsive.
 - **Secure**: ShadowBrowse uses the latest security features to protect your data and privacy.
-- **Private**: ShadowBrowse does not track your browsing history or store any personal information.
+- **Private**: ShadowBrowse does not track your browsing history or store any personal information without consent or you knowing about.
 
 ## Installation
 To install ShadowBrowse, simply download the latest release from the [releases page](https://github.com/projectshadowos/ShadowBrowse/releases) and run the installer.
