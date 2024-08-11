@@ -1,5 +1,5 @@
-<div style="align-items: center; display: flex; justify-content: center; flex-direction: column;">
-  <img src="/assets/Untitled design.png" alt="Logo" width="200" height="200">
+<div align="center"> 
+  <img src="/assets/logo_nbg.png" alt="Logo" width="125" height="125">
   <h1>ShadowBrowse</h1>
   <p>ShadowBrowse is a web browser that is designed to be fast, secure, and private. It is built for the modern ShadowOS operating system.</p>
 </div>
