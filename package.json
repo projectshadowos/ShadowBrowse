@@ -2,12 +2,12 @@
   "name": "@shadow/browse",
   "version": "1.0.0",
   "description": "ShadowBrowse is a web browser that is designed to be fast, secure, and private. It is built for the modern ShadowOS operating system.",
-  "main": "main.js",
+  "main": "main/index.js",
   "type": "module",
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --no-sandbox",
     "build": "webpack",
-    "dev": "concurrently \"webpack-dev-server --mode development\" \"electron .\"",
+    "dev": "concurrently \"webpack-dev-server --mode development\" \"electron . --no-sandbox\"",
     "build:prod": "webpack --mode production",
     "mtr": "node linux/move_to_root.js",
     "test": "echo \"Error: no test specified\" && exit 1"

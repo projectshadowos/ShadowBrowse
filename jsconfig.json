@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "ES2015",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["/*"]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
