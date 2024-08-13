@@ -1,19 +1,14 @@
 name: Publish
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
   publish:
     if: ${{ github.repository_owner == 'projectshadowos' }}
 
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest]
+    runs-on: macos-latest
 
     steps:
       - name: Checkout git repo
@@ -25,7 +20,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      
+
       - name: Install pnpm
         run: |
           npm install -g pnpm
@@ -47,29 +42,26 @@ jobs:
       - name: Authenticate GitHub CLI
         run: echo "${{ secrets.PAT }}" | gh auth login --with-token
 
-      - name: Check if release exists
-        id: check_release
+      - name: Generate release description
+        id: generate_description
         run: |
-          if gh release view "v${{ env.VERSION }}" > /dev/null 2>&1; then
-            echo "release_exists=true" >> $GITHUB_ENV
-          else
-            echo "release_exists=false" >> $GITHUB_ENV
-          fi
+          echo "RELEASE_DESCRIPTION=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
-      - name: Create tag
-        if: env.release_exists == 'false'
-        run: |
-          git tag v${{ env.VERSION }}
-          git push origin v${{ env.VERSION }}
-
-      - name: Create release
-        if: env.release_exists == 'false'
+      - name: Update release description
         env:
           GH_TOKEN: ${{ secrets.PAT }}
         run: |
-          gh release create "v${{ env.VERSION }}" --title "v${{ env.VERSION }}" --notes "Release v${{ env.VERSION }}"
+          gh release edit "${{ github.event.release.tag_name }}" --notes "${{ env.RELEASE_DESCRIPTION }}"
 
-      - name: Publish releases
+          - name: Check if release exists
+          id: check_release
+          run: |
+            if gh release view "v${{ env.VERSION }}" > /dev/null 2>&1; then
+              echo "release_exists=true" >> $GITHUB_ENV
+            else
+              echo "release_exists=false" >> $GITHUB_ENV
+            fi
+      - name: Publish release files
         env:
           GH_TOKEN: ${{ secrets.PAT }}
         run: |
