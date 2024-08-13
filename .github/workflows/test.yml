@@ -28,7 +28,7 @@ jobs:
           pnpm install
 
       - name: pnpm test
-        env:SW
+        env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pnpm run package

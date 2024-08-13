@@ -4,10 +4,16 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { IStoreSettingsObject, IStoreTabsObject } from './interfaces';
-import { getValue, setValue, deleteValue } from './database';
+import { IStoreSettingsObject } from './interfaces';
+
+import {
+  getSettingsValue,
+  setSettingsValue,
+  deleteSettingsValue,
+} from './database';
 
 class AppUpdater {
   constructor() {
@@ -18,54 +24,23 @@ class AppUpdater {
 }
 
 ipcMain.handle('get-store-value', (_event, key): any => {
-  return getValue(key);
+  return getSettingsValue(key);
 });
 
 ipcMain.handle('set-store-value', (_event, key, value): any => {
-  setValue(key, value);
+  setSettingsValue(key, value);
 });
 
 ipcMain.handle('delete-store-value', (_event, key): any => {
-  deleteValue(key);
+  deleteSettingsValue(key);
 });
 
 ipcMain.handle('set-settings-store', (_event, settings): any => {
-  setValue('settings', settings as IStoreSettingsObject);
+  setSettingsValue('settings', settings as IStoreSettingsObject);
 });
 
 ipcMain.handle('get-settings-store', () => {
-  return getValue('settings') as IStoreSettingsObject;
-});
-
-ipcMain.handle('set-tabs-store', (_event, tabs): any => {
-  setValue('tabs', tabs as IStoreTabsObject);
-});
-
-ipcMain.handle('get-tabs-store', () => {
-  return getValue('tabs') as IStoreTabsObject;
-});
-
-ipcMain.handle('delete-tabs-store', () => {
-  deleteValue('tabs');
-});
-
-ipcMain.handle('set-current-tab', (_event, tab): any => {
-  setValue('currentTab', tab);
-});
-
-ipcMain.handle('get-current-tab', () => {
-  return getValue('currentTab');
-});
-
-ipcMain.handle('delete-tab', (_event, tabId): any => {
-  const tabs = getValue('tabs') as IStoreTabsObject;
-  const newTabs = tabs.tabs.filter((tab) => tab.id !== tabId);
-  setValue('tabs', { tabs: newTabs });
-});
-
-ipcMain.handle('get-tab', (_event, tabId): any => {
-  const tabs = getValue('tabs') as IStoreTabsObject;
-  return tabs.tabs.find((tab) => tab.id === tabId);
+  return getSettingsValue('settings') as IStoreSettingsObject;
 });
 
 let mainWindow: BrowserWindow | null = null;
