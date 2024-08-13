@@ -1,6 +1,6 @@
 {
   "name": "@shadowos/browse",
-  "description": "A foundation for scalable desktop apps",
+  "description": "ShadowBrowse is a web browser that is designed to be fast, secure, and private. It is built for the modern ShadowOS operating system",
   "license": "Apache-2.0",
   "main": "./src/main/main.ts",
   "scripts": {
@@ -10,6 +10,7 @@
     "build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.shadow/configs/webpack.config.renderer.prod.ts",
     "postinstall": "ts-node .shadow/scripts/check-native-dep.js && electron-builder install-app-deps && npm run build:dll",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
     "package": "ts-node ./.shadow/scripts/clean.js dist && npm run build && electron-builder build --publish never && npm run build:dll",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "start": "ts-node ./.shadow/scripts/check-port-in-use.js && npm run start:renderer",

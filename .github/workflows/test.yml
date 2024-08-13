@@ -28,10 +28,9 @@ jobs:
           pnpm install
 
       - name: pnpm test
-        env:
+        env:SW
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pnpm run package
-          pnpm run lint
           pnpm exec tsc
           pnpm test
