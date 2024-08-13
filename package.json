@@ -65,6 +65,14 @@
       "\\.(ts|tsx|js|jsx)$": "ts-jest"
     }
   },
+  "homepage": "https://github.com/projectshadowos/ShadowBrowse#readme",
+  "bugs": {
+    "url": "https://github.com/projectshadowos/ShadowBrowse/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projectshadowos/ShadowBrowse.git"
+  },
   "dependencies": {
     "@electron/notarize": "^2.3.2",
     "electron-debug": "^3.2.0",
@@ -72,7 +80,8 @@
     "electron-updater": "^6.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "source-map-support": "^0.5.21"
   },
   "devDependencies": {
     "@electron/rebuild": "^3.3.0",
@@ -204,12 +213,9 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "owner": "projectshadowos",
+      "repo": "ShadowBrowse"
     }
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
   },
   "devEngines": {
     "node": ">=14.x",

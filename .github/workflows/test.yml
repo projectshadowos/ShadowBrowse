@@ -14,21 +14,24 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
 
-      - name: Install Node.js and NPM
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
 
-      - name: npm install
+      - name: Install pnpm
         run: |
-          npm install
+          npm install -g pnpm
 
-      - name: npm test
+      - name: pnpm install
+        run: |
+          pnpm install
+
+      - name: pnpm test
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm run package
-          npm run lint
-          npm exec tsc
-          npm test
+          pnpm run package
+          pnpm run lint
+          pnpm exec tsc
+          pnpm test
