@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout git repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Install Node
         uses: actions/setup-node@v3
@@ -43,7 +45,7 @@ jobs:
         run: brew install gh
 
       - name: Authenticate GitHub CLI
-        run: echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
+        run: echo "${{ secrets.PAT }}" | gh auth login --with-token
 
       - name: Check if release exists
         id: check_release
@@ -63,6 +65,6 @@ jobs:
       - name: Publish releases
         if: env.release_exists == 'false'
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT }}
         run: |
           pnpm exec electron-builder -- --publish always --win --linux
