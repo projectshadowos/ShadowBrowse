@@ -40,10 +40,10 @@ jobs:
           echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
 
       - name: Install GitHub CLI
-        run: sudo apt-get install gh
+        run: brew install gh
 
       - name: Authenticate GitHub CLI
-        run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
+        run: echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
       - name: Check if release exists
         id: check_release
