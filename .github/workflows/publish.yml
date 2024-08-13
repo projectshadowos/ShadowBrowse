@@ -62,8 +62,14 @@ jobs:
           git tag v${{ env.VERSION }}
           git push origin v${{ env.VERSION }}
 
-      - name: Publish releases
+      - name: Create release
         if: env.release_exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          gh release create "v${{ env.VERSION }}" --title "v${{ env.VERSION }}" --notes "Release v${{ env.VERSION }}"
+
+      - name: Publish releases
         env:
           GH_TOKEN: ${{ secrets.PAT }}
         run: |
