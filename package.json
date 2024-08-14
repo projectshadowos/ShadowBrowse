@@ -1,6 +1,6 @@
 {
   "name": "@shadowos/browse",
-  "version": "1.0.0-a.1",
+  "version": "1.0.0-b.1",
   "description": "ShadowBrowse is a web browser that is designed to be fast, secure, and private. It is built for the modern ShadowOS operating system",
   "license": "Apache-2.0",
   "main": "./src/main/main.ts",
