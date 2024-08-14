@@ -7,13 +7,8 @@ import log from 'electron-log';
 
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { IStoreSettingsObject } from './interfaces';
 
-import {
-  getSettingsValue,
-  setSettingsValue,
-  deleteSettingsValue,
-} from './database';
+import { getSettings } from './database';
 
 class AppUpdater {
   constructor() {
@@ -23,27 +18,11 @@ class AppUpdater {
   }
 }
 
-ipcMain.handle('get-store-value', (_event, key): any => {
-  return getSettingsValue(key);
-});
-
-ipcMain.handle('set-store-value', (_event, key, value): any => {
-  setSettingsValue(key, value);
-});
-
-ipcMain.handle('delete-store-value', (_event, key): any => {
-  deleteSettingsValue(key);
-});
-
-ipcMain.handle('set-settings-store', (_event, settings): any => {
-  setSettingsValue('settings', settings as IStoreSettingsObject);
-});
-
-ipcMain.handle('get-settings-store', () => {
-  return getSettingsValue('settings') as IStoreSettingsObject;
-});
-
 let mainWindow: BrowserWindow | null = null;
+
+ipcMain.on('settings:get', () => {
+  return getSettings();
+});
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -97,8 +76,8 @@ const createWindow = async () => {
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
-
   mainWindow.setMenu(null);
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {

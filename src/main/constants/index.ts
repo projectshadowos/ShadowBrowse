@@ -1,3 +1,4 @@
 import sitePermissions from './permissions';
+import settings from './settings';
 
-export { sitePermissions };
+export { sitePermissions, settings };

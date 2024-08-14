@@ -3,7 +3,7 @@ import icon from '../../../../assets/icon.png';
 
 export default function SetupStage1() {
   return (
-    <main className="relative flex flex-col items-center justify-center h-screen">
+    <main className="relative flex flex-col items-center justify-center h-screen bg-[#0e0e0e]">
       <img
         src={icon}
         alt="icon"

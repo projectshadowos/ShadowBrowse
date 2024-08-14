@@ -5,18 +5,23 @@
 </div>
 
 ## Features
+
 - **Fast**: ShadowBrowse is built on top of the latest web technologies to ensure that it is fast and responsive.
 - **Secure**: ShadowBrowse uses the latest security features to protect your data and privacy.
 - **Private**: ShadowBrowse does not track your browsing history or store any personal information without consent or you knowing about.
 
 ## Installation
+
 To install ShadowBrowse, simply download the latest release from the [releases page](https://github.com/projectshadowos/ShadowBrowse/releases) and run the installer.
 
 ## Usage
+
 To use ShadowBrowse, simply open the application and start browsing the web. You can use the address bar to navigate to websites and use the toolbar to access additional features.
 
 ## Contributing
+
 If you would like to contribute to ShadowBrowse, please fork the repository and submit a pull request. We welcome all contributions and feedback.
 
 ## License
+
 ShadowBrowse is licensed under the [Apache License 2.0](https://github.com/projectshadowos/ShadowBrowse/blob/main/LICENSE).

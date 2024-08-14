@@ -1,7 +1,12 @@
+import IStoreTabsObject from './tabs';
+
 interface IStoreSettingsObject {
   design: 'light' | 'dark' | 'system';
+  setupDone: boolean;
+  setupPart: number;
   onStartup: {
     openLast: boolean;
+    lastTabs: IStoreTabsObject[];
     openEmpty: boolean;
   };
   isMainBrowser: boolean;
@@ -40,7 +45,6 @@ interface IStoreSettingsObject {
   };
   accessibility: {
     enableScreenReader: boolean;
-    highContrastMode: boolean;
     textToSpeech: boolean;
   };
 }
