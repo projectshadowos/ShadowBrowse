@@ -8,7 +8,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
-import { getSettings } from './database';
+import { getSettings, setSettingsValue } from './database';
 
 class AppUpdater {
   constructor() {
@@ -21,7 +21,15 @@ class AppUpdater {
 let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('settings:get', () => {
-  return getSettings();
+  const settings = getSettings();
+  // console.log(settings);
+  return settings;
+});
+
+ipcMain.on('settings:set', (event, key, value) => {
+  setSettingsValue(key, value);
+  // console.log(key, value);
+  return true;
 });
 
 if (process.env.NODE_ENV === 'production') {

@@ -2,7 +2,7 @@
 /* eslint-disable react/button-has-type */
 import icon from '../../../../assets/icon.png';
 
-export default function SetupStage1({
+export default function SetupStage2({
   setupPart,
   setSetupPart,
 }: {
@@ -20,15 +20,6 @@ export default function SetupStage1({
       <h1 className="text-6xl mt-14 font-semibold">
         Lets begin the setup process
       </h1>
-      <h3 className="text-2xl mt-4">
-        Are you ready to experience the new web?
-      </h3>
-      <button
-        className="mt-6 px-8 font-medium py-2 bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-md"
-        onClick={() => setSetupPart(1)}
-      >
-        Get Started
-      </button>
       <h1 className="text-sm bottom-6 absolute select-none">
         <span className="font-bold">ShadowBrowse:</span>{' '}
         <a
